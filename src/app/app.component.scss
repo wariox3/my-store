@@ -6,9 +6,8 @@
 }
 
 .products--grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 15px;
+  display: flex;
+  flex-direction: column;
   div {
     img {
       width: 100%;
@@ -18,4 +17,38 @@
       margin: 0;
     }
   }
+}
+
+.message-error {
+  background: red;
+  color: white;
+  opacity: 0;
+  transition: all linear .5s;
+  &.invalid {
+    opacity: 100;
+  }
+}
+
+.line-error {
+  height: 0;
+  border-bottom: 1px solid;
+  &.invalid {
+    border-color: red;
+  }
+  &.valid {
+    border-color: green;
+  }
+}
+
+.styless {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media screen and (min-width: 40em) {
+  .products--grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-gap: 15px;
+    }
 }
