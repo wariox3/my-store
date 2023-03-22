@@ -9,7 +9,7 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   @Input() img: string = "";
   @Output() loaded = new EventEmitter<string>();
   imageDefault = "./assets/images/default.png";
-
+  //counter = 0;
 
   constructor() {
     // before render
@@ -27,6 +27,10 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // before render
     // async - fecth -- once time
     console.log('ngOnInit', 'imgValue', this.img)
+    /*window.setInterval(() => {
+      this.counter += 1;
+      console.log('run counter')
+    }, 1000);*/
   }
 
   ngAfterViewInit(): void {
