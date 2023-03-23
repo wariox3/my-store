@@ -1,7 +1,22 @@
 <p>
   La cantidad {{ myShoppingCart.length }}
 </p>
-<p>Total_ ${{ total }}</p>
+<p>Total: ${{ total }}</p>
+<p>
+  Today: {{ today | date:'short' }}
+</p>
+<p>
+  Otra fecha: {{ date | date:'yyyy-MM-dd' }}
+</p>
+<p>
+  Cuanto tiempo: {{ date | timeAgo }}
+</p>
+<p>
+  {{ 'hOLa BasCVAS' | uppercase }}
+</p>
+<p>
+  {{ 'hOLa BasCVAS' | reverse }}
+</p>
 <div class="products--grid">
   <app-product
     [product]="product"
