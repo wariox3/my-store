@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Product } from '../../models/product.model';
+import { Product, CreateProductDTO, UpdateProductDTO } from '../../models/product.model';
 import { StoreService } from '../../services/store.service';
 import { ProductsService} from '../../services/products.service'
 
@@ -57,6 +57,42 @@ export class ProductsComponent {
     .subscribe(data => {
       this.toggleProductDetail();
       this.prodductChosen = data;
+    })
+  }
+
+  createNewProduct() {
+    const product: CreateProductDTO = {
+      title: "Nuevo producto",
+      price: 1000,
+      categoryId: 1,
+      description: 'Tal de tal',
+      images: ['']
+    }
+    this.productsService.create(product)
+    .subscribe(data => {
+      this.products.unshift(data);
+    });
+  }
+
+  updateProduct() {
+    const changes: UpdateProductDTO = {
+      title: "Que chimba Medallooooo"
+    }
+    const id = this.prodductChosen.id;
+    this.productsService.update(id, changes)
+    .subscribe(data => {
+      const productIndex = this.products.findIndex(item => item.id === this.prodductChosen.id);
+      this.products[productIndex] = data;
+    })
+  }
+
+  deleteProduct() {
+    const id = this.prodductChosen.id;
+    this.productsService.delete(id)
+    .subscribe(() => {
+      const productIndex = this.products.findIndex(item => item.id === this.prodductChosen.id);
+      this.products.splice(productIndex, 1);
+      this.showProductDetail = false;
     })
   }
 }
